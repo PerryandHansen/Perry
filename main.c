@@ -41,14 +41,14 @@ lift_claw(int);//Claw up (servos)
 motor (0,-20);
 motor (3,50); //Slowly turn lego to bring magnet towards post
 drive_back(int distance)//Back up
-turn_around (180); //Turn 180
+turn_right (180); //Turn 180
 //Lower flat arm
 
 //45-60 sec //Push Supplies to DRZ
 drive_forward(int distance); //Walk forward .5 ft.
 turn_left(int degrees);//Turn left collecting food and medical supplies
 drive_forward(int distance); //Walk forward pushing supplies in
-turn_around (180); //Turn 180 
+turn_right (180); //Turn 180 
 
 //60-75 sec //Collect more supplies
 drive_forward(int distance); //Walk forward 
@@ -58,7 +58,7 @@ turn_left(int degrees);//Turn 90 left collecting more supplies
 drive_forward(int distance); //walk forward
 
 //75-90 sec Continue to push supplies to DRZ
-turn_around (180); //Turn 180 
+turn_right (180); //Turn 180 
 drive_forward(int distance); //Walk forward
 turn_left(int degrees);//Turn 90 left
 drive_forward(int distance); //walk forward 
@@ -68,19 +68,19 @@ drive_forward(int distance); //walk forward pushing last of citizens into DRZ
 
 
 //90-105 sec Rescue people from skybridge
-turn_around (180); //turn 180
+turn_right (180); //turn 180
 lift_claw(int);//lift claw 
 open_claw (int);//open claw 
 drive_forward(int distance); //walk forward to skybridge (bump sensor)
 close_claw (int);//close claw 
-turn_around (180); //turn 180 
+turn_right (180); //turn 180 
 drive_forward(int distance); //walk to DRZ 
 open_claw (int);//open claw
 
 //105-120 sec Repeat 
 drive_forward(int distance); //walk forward to skybridge (bump sensor)
 close_claw (int);//close claw 
-turn_around (180); //turn 180 
+turn_right (180); //turn 180 
 drive_forward(int distance); //walk to DRZ 
 open_claw (int);//open claw
 
@@ -88,41 +88,86 @@ open_claw (int);//open claw
     
   return 0;  
 }
-
-
-void drive_forward(int distance) //input in cm
+	    
+Void drive_forward(int distance)
 {
-    motor(0,50);
-    motor(2,50);
-    msleep(distance/50*100); //time = distance/vel times 1000 in ms
+    cmpc(0);
+    While (gmpc(0)<((distance*1400)/17)) //distance times ticks per cm
+     {
+         motor(0,50)
+         motor(3,50)
+      }
     ao();
 }
 void turn_right(int degrees)
+{
+    cmpc(0);
+    While (abs(gmpc(0)<((distance*1400)/20))) //need to figure out number of ticks per degree
+    {
+    motor(0,50);
+    motor(2,-50);
+    }
+    ao();
+}
+void turn_left(int degrees)
+{
+
+    cmpc(0);
+    while(gmpc(0)<(abs(distance*1400)/20))) need to figure out number of ticks per degree
+    {
+    motor(0,-50);
+    motor(2,50);
+    }
+    ao();
+}
+void drive_back(int distance)  //input in cm
+{
+    cmpc(0);
+    while(gmpc(0)<((distance*-1400)/17))
+    {
+         motor(0,-50);
+         motor(2,-50);
+     }
+    ao();
+}
+
+void turn_around(int degrees) //turns 180
 {
     motor(0,50);
     motor(2,-50);
     msleep(degrees*20); //need to figure out number of degrees per ms
     ao();
 }
-void turn_left(int degrees)
-{
-    motor(0,-50);
-    motor(2,50);
-    msleep(degrees*20); //figure out degrees per ms
-}
-void drive_back(int distance
-{
-	motor(0,-50)
-    motor(2,-50)
-    msleep(distance*1400/17)
-}
+
 void open_claw(int)
 {
     enable_servos();
-    set_servo_position(0,position)
+    set_servo_position(1, 1024)
     disable_servos();
 }
-void close_claw(int position)
+
+
+
+void close_claw(int)
 {
-    enable_servos
+    enable_servos ();
+    set_servo_position(1,500);
+    disable_servos();
+}
+
+
+void lift_claw(int);
+{
+    enable_servos();
+    set_servo_position(0, 1800);
+    disable_servos();
+}
+
+void lower_claw(int);
+{
+    enable_servos();
+    set_servo_position(0, 600);
+    disable_servos();
+}
+
     
