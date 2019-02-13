@@ -4,7 +4,7 @@ void drive_forward(int distance); // distance in cm
 void turn_right(int degrees);   
 void turn_left(int degrees);
 void drive_back(int distance);
-void open_and _close_claw(int position);
+void open_and_close_claw(int position);
 void close_claw(int);
 void lift_claw(int);
 void lower_claw(int);
@@ -139,7 +139,7 @@ void turn_around(int degrees) //turns 180
     ao();
 }
 
- void open_claw (int position)
+ void open_and_close_claw (int position)
 {
     enable_servos();
     set_servo_position(1, position);
