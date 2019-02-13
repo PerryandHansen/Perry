@@ -139,11 +139,12 @@ void turn_around(int degrees) //turns 180
     ao();
 }
 
-void open_claw(int)
+ void open_claw (int position)
 {
     enable_servos();
-    set_servo_position(1, 1024)
-    disable_servos();
+    set_servo_position(1, position);
+       msleep(1000);
+   
 }
 
 
