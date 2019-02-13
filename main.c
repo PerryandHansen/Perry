@@ -4,7 +4,7 @@ void drive_forward(int distance); // distance in cm
 void turn_right(int degrees);   
 void turn_left(int degrees);
 void drive_back(int distance);
-void open_claw(int );
+void open_and _close_claw(int position);
 void close_claw(int);
 void lift_claw(int);
 void lower_claw(int);
