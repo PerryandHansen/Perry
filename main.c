@@ -5,10 +5,8 @@ void turn_right(int degrees);
 void turn_left(int degrees);
 void drive_back(int distance);
 void open_and_close_claw(int position);
-void close_claw(int);
-void lift_claw(int);
-void lower_claw(int);
-
+void lift_and_lower_claw(int position);
+void rotate_claw(int position);
 
     
 int main()
@@ -142,33 +140,25 @@ void turn_around(int degrees) //turns 180
  void open_and_close_claw (int position)
 {
     enable_servos();
-    set_servo_position(1, position);
+    set_servo_position(2, position);
+       msleep(1000);
+   
+}
+
+void lift_and_lower_claw(int position)
+{
+    enable_servos();
+    set_servo_position(0, position);
        msleep(1000);
    
 }
 
 
-
-void close_claw(int)
-{
-    enable_servos ();
-    set_servo_position(1,500);
-    disable_servos();
-}
-
-
-void lift_claw(int);
+void rotate_claw(int position)
 {
     enable_servos();
-    set_servo_position(0, 1800);
-    disable_servos();
+    set_servo_position(1, position);
+       msleep(1000);
+   
 }
 
-void lower_claw(int);
-{
-    enable_servos();
-    set_servo_position(0, 600);
-    disable_servos();
-}
-
-    
