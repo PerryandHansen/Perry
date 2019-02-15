@@ -63,8 +63,6 @@ drive_forward(int distance); //walk forward
 turn_left(int degrees);//Turn 90 left
 drive_forward(int distance); //walk forward pushing last of citizens into DRZ
 
-
-
 //90-105 sec Rescue people from skybridge
 turn_right (180); //turn 180
 lift_claw(int);//lift claw 
@@ -90,7 +88,7 @@ open_claw (int);//open claw
 Void drive_forward(int distance)
 {
     cmpc(0);
-    While (gmpc(0)<((distance*1400)/17)) //distance times ticks per cm
+    While (gmpc(0)<(distance*(1400/17))) //distance times ticks per cm
      {
          motor(0,50)
          motor(3,50)
@@ -100,7 +98,7 @@ Void drive_forward(int distance)
 void turn_right(int degrees)
 {
     cmpc(0);
-    While (abs(gmpc(0)<((distance*1000)/90))) //need to figure out number of ticks per degree
+    While (abs(gmpc(0)<(distance*(1000/90)))) //distance*(ticks/degree)
     {
     motor(0,50);
     motor(3,-50);
@@ -111,7 +109,7 @@ void turn_left(int degrees)
 {
 
     cmpc(0);
-    while(abs(gmpc(0)<(degrees*(1000/90))) need to figure out number of ticks per degree
+    while(abs(gmpc(0)<(degrees*(1000/90)))) //distance*(ticks/degree)
     {
     motor(0,-50);
     motor(3,50);
@@ -121,7 +119,7 @@ void turn_left(int degrees)
 void drive_back(int distance)  //input in cm
 {
     cmpc(0);
-    while(gmpc(0)<(distance*(-1400/17))
+    while(gmpc(0)<(distance*(-1400/17)))
     {
          motor(0,-50);
          motor(3,-50);
