@@ -88,7 +88,7 @@ open_claw (int);//open claw
 Void drive_forward(int distance)
 {
     cmpc(0);
-    While (gmpc(0)<(distance*(1400/17))) //distance times ticks per cm
+    While (gmpc(0)<(distance*(1400/17))) //distance*ticks/cm)
      {
          motor(0,50)
          motor(3,50)
@@ -139,7 +139,6 @@ void lift_and_lower_claw(int position)
     enable_servos();
     set_servo_position(0, position);
        msleep(1000);
-   
 }
 
 
