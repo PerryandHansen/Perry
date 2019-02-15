@@ -128,15 +128,6 @@ void drive_back(int distance)  //input in cm
      }
     ao();
 }
-
-void turn_around(int degrees) //turns 180
-{
-    motor(0,50);
-    motor(2,-50);
-    msleep(degrees*20); //need to figure out number of degrees per ms
-    ao();
-}
-
  void open_and_close_claw (int position)
 {
     enable_servos();
