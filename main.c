@@ -100,10 +100,10 @@ Void drive_forward(int distance)
 void turn_right(int degrees)
 {
     cmpc(0);
-    While (abs(gmpc(0)<((distance*1400)/20))) //need to figure out number of ticks per degree
+    While (abs(gmpc(0)<((distance*1000)/90))) //need to figure out number of ticks per degree
     {
     motor(0,50);
-    motor(2,-50);
+    motor(3,-50);
     }
     ao();
 }
@@ -111,20 +111,20 @@ void turn_left(int degrees)
 {
 
     cmpc(0);
-    while(gmpc(0)<(abs(distance*1400)/20))) need to figure out number of ticks per degree
+    while(abs(gmpc(0)<(degrees*(1000/90))) need to figure out number of ticks per degree
     {
     motor(0,-50);
-    motor(2,50);
+    motor(3,50);
     }
     ao();
 }
 void drive_back(int distance)  //input in cm
 {
     cmpc(0);
-    while(gmpc(0)<((distance*-1400)/17))
+    while(gmpc(0)<(distance*(-1400/17))
     {
          motor(0,-50);
-         motor(2,-50);
+         motor(3,-50);
      }
     ao();
 }
