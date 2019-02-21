@@ -15,27 +15,27 @@ int main()
 //0-15 sec Pick up Gas Valve
 drive_forward(53); //Walk forward 53 cm
 turn_left(90); //Turn left 90B0
-drive_forward(93); //Walk forward 93 ft to gas valve
-open_claw (1024)//Open claw
-lower_claw(int position);//Lower claw onto valve
-close_claw (int position);//Close claw
-lift_claw(int position);//Raise claw
+drive_forward(93); //Walk forward 93 cm to gas valve
+open_and_close_claw (1024)//Open claw
+lift_and_lower_claw(int position);//Lower claw onto valve
+open_and_close_claw (int position);//Close claw
+lift_and_lower_claw(int position);//Raise claw
 drive_back(6)//Walk backward 6 cm
 turn_right(180); //Turn right 180B0
 
 //15-30 sec  Drop valve and RU off at UZ
-drive_forward(int distance); //Walk to 2.5 ft to UZ and push RU inside of it
-lower_claw(int position);//Lower claw to align with PVC
+drive_forward(87); //Walk to 87 cm to UZ and push RU inside of it
+lift_and_lower_claw(int position);//Lower claw to align with PVC
 turn_left(45);//Turn left 45B0
 drive_forward(int distance); //Walk forward 0.25 ft
 turn_right(45);   //Turn right 45B0
-open_claw (1024);//Open claw to let go of valve
+open_and_close_claw (1024);//Open claw to let go of valve
 
 //30-45 sec //Connect Power lines
-drive_back(int distance);//Back up 1.5 ft 
+drive_back(46);//Back up 1.5 ft 
 turn_left(90);//Turn left 
 drive_forward(int distance); //Walk forward 
-lift_claw(int position);//Claw up (servos) 
+lift_and_lower_claw(int position);//Claw up(servos) 
 motor (0,-20);
 motor (3,50); //Slowly turn lego to bring magnet towards post
 drive_back(int distance)//Back up
@@ -43,7 +43,7 @@ turn_right (180); //Turn 180
 //Lower flat arm
 
 //45-60 sec //Push Supplies to DRZ
-drive_forward(int distance); //Walk forward .5 ft.
+drive_forward(15); //Walk forward .5ft/15 cm
 turn_left(int degrees);//Turn left collecting food and medical supplies
 drive_forward(int distance); //Walk forward pushing supplies in
 turn_right (180); //Turn 180 
@@ -65,26 +65,26 @@ drive_forward(int distance); //walk forward pushing last of citizens into DRZ
 
 //90-105 sec Rescue people from skybridge
 turn_right (180); //turn 180
-lift_claw(int position);//lift claw
-open_claw (1024);//open claw
+lift_and_lower_claw(int position);//lift claw
+open_and_close_claw (1024);//open claw
 	while(digital(8)==0) //while bump sensor is not pushed; 
 	{
 		drive_forward(1); //walk forward to skybridge (bump sensor)
 	}
-close_claw (int);//close claw 
+open_and_close_claw (int);//close claw 
 turn_right (180); //turn 180 
 drive_forward(int distance); //walk to DRZ 
-open_claw (1024);//open claw
+open_and_close_claw (1024);//open claw
 
 //105-120 sec Repeat
 	while(digital(8)==0) //while bump sensor is not pushed; 
 	{
 		drive_forward(1); //walk forward to skybridge (bump sensor)
 	}
-close_claw (int);//close claw 
+open_and_close_claw (int);//close claw 
 turn_right (180); //turn 180 
 drive_forward(int distance); //walk to DRZ 
-open_claw (1024);//open claw
+open_and_close_claw (1024);//open claw
 
 
     
@@ -94,7 +94,7 @@ open_claw (1024);//open claw
 Void drive_forward(int distance)
 {
     cmpc(0);
-    While (gmpc(0)<(distance*(1400/17))) //distance*ticks/cm)
+    While (gmpc(0)<(distance*(1400/17))) //distance*(ticks/cm)
      {
          motor(0,50)
          motor(3,50)
