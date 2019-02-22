@@ -13,15 +13,29 @@ int main()
 {
 
 //0-15 sec Pick up Gas Valve
-drive_forward(53); //Walk forward 53 cm
-turn_left(90); //Turn left 90B0
-drive_forward(93); //Walk forward 93 cm to gas valve
-open_and_close_claw (1024)//Open claw
-lift_and_lower_claw(int position);//Lower claw onto valve
-open_and_close_claw (int position);//Close claw
-lift_and_lower_claw(int position);//Raise claw
-drive_back(6)//Walk backward 6 cm
+drive_forward(23); //Walk forward 9IN
+	turn_right(90); //Turn left 90
+	drive_forward(62); //Walk forward 24in to gas valve
+	turn_left(90); 
+	drive_forward(43);//17in
+	open_and_close_claw (1024);//Open claw
+	lift_and_lower_claw(1400);//Lower claw onto valve
+	open_and_close_claw (300);//Close claw
+	lift_and_lower_claw(0);//Raise claw
+	drive_back(15);//Walk backward 6 cm
 turn_right(180); //Turn right 180B0
+    drive_forward(5);
+    turn_left(90);
+    drive_forward(25);
+    turn_left(90);
+    drive_back(55);
+    msleep(100);
+    drive_forward(25);
+    turn_left(90);
+    drive_forward(7);
+    turn_left(90);
+    drive_forward(15);
+
 
 //15-30 sec  Drop valve and RU off at UZ
 drive_forward(87); //Walk to 87 cm to UZ and push RU inside of it
@@ -101,27 +115,28 @@ Void drive_forward(int distance)
       }
     ao();
 }
-void turn_right(int degrees)
-{
-    cmpc(0);
-    While (abs(gmpc(0)<(distance*(1000/90)))) //distance*(ticks/degree)
-    {
-    motor(0,50);
-    motor(3,-50);
-    }
-    ao();
-}
 void turn_left(int degrees)
-{
-
-    cmpc(0);
-    while(abs(gmpc(0)<(degrees*(1000/90)))) //distance*(ticks/degree)
+{ cmpc(0);
+while (abs(gmpc(0)<(abs(degrees*(1000/90)))))
     {
-    motor(0,-50);
-    motor(3,50);
+        mav(0,1000);
+        mav(3,-1000);
+        msleep(10);
     }
+    cmpc(0);
     ao();
-}
+  }
+void turn_right(int degrees)
+{ cmpc(3);
+while (abs(gmpc(3)<(abs(degrees*(1000/98)))))
+    {
+        mav(0,-1000);
+        mav(3,1000);
+        msleep(10);
+    }
+ cmpc(3);
+ ao();
+  }
 void drive_back(int distance)  //input in cm
 {
     cmpc(0);
