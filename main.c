@@ -7,6 +7,7 @@ void drive_back(int distance);
 void open_and_close_claw(int position);
 void lift_and_lower_claw(int position);
 void rotate_claw(int position);
+void curve_drive(int distance);
 
     
 int main()
@@ -22,7 +23,7 @@ drive_forward(23); //Walk forward 9IN
 	lift_and_lower_claw(1400);//Lower claw onto valve
 	open_and_close_claw (300);//Close claw
 	lift_and_lower_claw(0);//Raise claw
-	drive_back(15);//Walk backward 6 cm
+	drive_back(15);
 turn_right(180); //Turn right 180B0
     drive_forward(5);
     turn_left(90);
@@ -41,7 +42,7 @@ turn_right(180); //Turn right 180B0
 drive_forward(87); //Walk to 87 cm to UZ and push RU inside of it
 lift_and_lower_claw(int position);//Lower claw to align with PVC
 turn_left(45);//Turn left 45B0
-drive_forward(int distance); //Walk forward 0.25 ft
+drive_forward(8); //Walk forward 0.25 ft
 turn_right(45);   //Turn right 45B0
 open_and_close_claw (1024);//Open claw to let go of valve
 
@@ -58,15 +59,15 @@ turn_right (180); //Turn 180
 
 //45-60 sec //Push Supplies to DRZ
 drive_forward(15); //Walk forward .5ft/15 cm
-turn_left(int degrees);//Turn left collecting food and medical supplies
+turn_left(90);//Turn left collecting food and medical supplies
 drive_forward(int distance); //Walk forward pushing supplies in
 turn_right (180); //Turn 180 
 
 //60-75 sec //Collect more supplies
-drive_forward(int distance); //Walk forward 
-turn_left(int degrees);//Turn 90 left
-drive_forward(int distance); //walk forward 
-turn_left(int degrees);//Turn 90 left collecting more supplies 
+drive_forward(46); //Walk forward 
+turn_left(90);//Turn 90 left
+drive_forward(15); //walk forward 
+turn_left(90);//Turn 90 left collecting more supplies 
 drive_forward(int distance); //walk forward
 
 //75-90 sec Continue to push supplies to DRZ
@@ -169,6 +170,15 @@ void rotate_claw(int position)
     set_servo_position(1, position);
        msleep(1000);
    
+}
+void curve_drive(int distance)
+{
+    cmpc(0);
+    while(gmpc(0)<(distance*(-1400/17)))
+    {
+	mav(0, 750)
+   	mav(3, 500)
+    }
 }
 
 
