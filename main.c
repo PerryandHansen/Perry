@@ -176,8 +176,8 @@ void curve_drive(int distance)
     cmpc(0);
     while(gmpc(0)<(distance*(-1400/17)))
     {
-	mav(0, 750)
-   	mav(3, 500)
+	mav(0, 750);
+   	mav(3, 500);
     }
 }
 
