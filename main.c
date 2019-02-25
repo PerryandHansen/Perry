@@ -43,7 +43,7 @@ drive_forward(87); //Walk to 87 cm to UZ and push RU inside of it
 lift_and_lower_claw(int position);//Lower claw to align with PVC
 turn_left(45);//Turn left 45B0
 drive_forward(8); //Walk forward 0.25 ft
-turn_right(45);   //Turn right 45B0
+turn_right (45);   //Turn right 45B0
 open_and_close_claw (1024);//Open claw to let go of valve
 
 //30-45 sec //Connect Power lines
@@ -66,9 +66,9 @@ turn_right (180); //Turn 180
 //60-75 sec //Collect more supplies
 drive_forward(46); //Walk forward 
 turn_left(90);//Turn 90 left
-drive_forward(15); //walk forward 
+drive_forward(30); //walk forward 
 turn_left(90);//Turn 90 left collecting more supplies 
-drive_forward(int distance); //walk forward
+drive_forward(30); //walk forward
 
 //75-90 sec Continue to push supplies to DRZ
 turn_right (180); //Turn 180 
@@ -85,20 +85,24 @@ open_and_close_claw (1024);//open claw
 	while(digital(8)==0) //while bump sensor is not pushed; 
 	{
 		drive_forward(1); //walk forward to skybridge (bump sensor)
+		msleep(500)
 	}
+ao();
 open_and_close_claw (int);//close claw 
 turn_right (180); //turn 180 
-drive_forward(int distance); //walk to DRZ 
+drive_forward(int distance); //walk to DRZ
 open_and_close_claw (1024);//open claw
 
 //105-120 sec Repeat
 	while(digital(8)==0) //while bump sensor is not pushed; 
 	{
 		drive_forward(1); //walk forward to skybridge (bump sensor)
+		msleep(500)
 	}
-open_and_close_claw (int);//close claw 
-turn_right (180); //turn 180 
-drive_forward(int distance); //walk to DRZ 
+ao();
+open_and_close_claw (int);//close claw
+turn_right (180); //turn 180
+drive_forward(int distance); //walk to DRZ
 open_and_close_claw (1024);//open claw
 
 
