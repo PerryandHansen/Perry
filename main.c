@@ -14,28 +14,27 @@ int main()
 {
 
 //0-15 sec Pick up Gas Valve
-drive_forward(23); //Walk forward 9IN
-	turn_right(90); //Turn left 90
-	drive_forward(62); //Walk forward 24in to gas valve
-	turn_left(90); 
-	drive_forward(43);//17in
-	open_and_close_claw (1024);//Open claw
-	lift_and_lower_claw(1400);//Lower claw onto valve
-	open_and_close_claw (300);//Close claw
-	lift_and_lower_claw(0);//Raise claw
-	drive_back(15);
-turn_right(180); //Turn right 180B0
-    drive_forward(5);
-    turn_left(90);
-    drive_forward(25);
-    turn_left(90);
-    drive_back(55);
-    msleep(100);
-    drive_forward(25);
-    turn_left(90);
-    drive_forward(7);
-    turn_left(90);
-    drive_forward(15);
+lift_and_lower_claw(1604);
+open_and_close_claw(1024);
+rotate_claw(1501);
+drive_forward(22); //Walk forward 9IN
+msleep(500);
+turn_right(90); //Turn left 90
+msleep(500);
+lift_and_lower_claw(0);//Lower claw 
+rotate_claw(1865);
+drive_forward(57); //parallel to pipe
+open_and_close_claw (83);//Open claw
+//walks to pvc pipe 
+msleep(500);
+turn_left(90); 
+msleep(500);
+drive_forward(38);//17in UP TO PVC PIPE
+open_and_close_claw (1350);//Close claw
+drive_forward(1);
+slow_servo_lift(1200);//Raise claw
+drive_forward(3);
+lift_and_lower_claw(1600);
 
 
 //15-30 sec  Drop valve and RU off at UZ
