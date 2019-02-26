@@ -38,12 +38,29 @@ lift_and_lower_claw(1600);
 
 
 //15-30 sec  Drop valve and RU off at UZ
-drive_forward(87); //Walk to 87 cm to UZ and push RU inside of it
-lift_and_lower_claw(int position);//Lower claw to align with PVC
-turn_left(45);//Turn left 45B0
-drive_forward(8); //Walk forward 0.25 ft
-turn_right (45);   //Turn right 45B0
-open_and_close_claw (1024);//Open claw to let go of valve
+   	drive_back(20);//Walk backward 6 cm
+     msleep(250);
+    turn_right(90);
+     msleep(500);
+    drive_forward(12);
+    msleep(600);
+    turn_left(90);
+    msleep(500);
+     drive_back(60);//push water reclamation unit into UZ
+  	drive_forward(25);
+    lift_and_lower_claw(1700);
+      msleep(700);
+    turn_right(90);
+      msleep(500);
+    drive_back(27);
+      msleep(700);
+    turn_right(90);
+      msleep(700);
+	drive_forward(34);//drive towards PVC handle
+    msleep(1500);
+    lift_and_lower_claw(1400);
+   cmpc(0);
+    cmpc(3);
 
 //30-45 sec //Connect Power lines
 drive_back(46);//Back up 1.5 ft 
