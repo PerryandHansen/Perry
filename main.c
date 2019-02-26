@@ -53,6 +53,8 @@ drive_forward(int distance); //Walk forward
 lift_and_lower_claw(int position);//Claw up(servos) 
 motor (0,-20);
 motor (3,50); //Slowly turn lego to bring magnet towards post
+	msleep(1000)
+	ao();
 drive_back(int distance)//Back up
 turn_right (180); //Turn 180
 //Lower flat arm
