@@ -8,7 +8,7 @@ void open_and_close_claw(int position);
 void lift_and_lower_claw(int position);
 void rotate_claw(int position);
 void curve_drive(int distance);
-
+void slow_servo_lift(int position);
     
 int main()
 {
@@ -185,6 +185,17 @@ void lift_and_lower_claw(int position)
        msleep(1000);
 }
 
+void slow_servo_lift(int position)
+{
+    enable_servos();
+    int x = 0;
+    while(x<position)
+    {
+    set_servo_position(0, x);
+       msleep(50);
+      x+=25;
+    }
+}
 
 void rotate_claw(int position)
 {
