@@ -63,17 +63,22 @@ lift_and_lower_claw(1600);
     cmpc(3);
 
 //30-45 sec //Connect Power lines
-drive_back(46);//Back up 1.5 ft 
+open_and_close_claw(1050);//set position (level)
+    msleep(500);
+drive_back(33);//Back up 1.5 ft
+    msleep(500);
 turn_left(90);//Turn left 
-drive_forward(int distance); //Walk forward 
-lift_and_lower_claw(int position);//Claw up(servos) 
-motor (0,-20);
-motor (3,50); //Slowly turn lego to bring magnet towards post
-	msleep(1000)
-	ao();
-drive_back(int distance)//Back up
-turn_right (180); //Turn 180
-//Lower flat arm
+    msleep(500);
+drive_forward(30); //Walk forward 
+    msleep(500);
+slow_servo_lift(1024);//Claw up(servos)
+    msleep(500);
+lift_and_lower_claw(400)
+    msleep(500);
+drive_back(30);//Back up
+    msleep(500);
+turn_right(180); //Turn 180
+    msleep(500);
 
 //45-60 sec //Push Supplies to DRZ
 drive_forward(15); //Walk forward .5ft/15 cm
@@ -128,7 +133,7 @@ open_and_close_claw (1024);//open claw
   return 0;  
 }
 	    
-Void drive_forward(int distance)
+void drive_forward(int distance)
 {
     cmpc(0);
     While (gmpc(0)<(distance*(1400/17))) //distance*(ticks/cm)
