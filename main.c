@@ -1,42 +1,48 @@
 #include <kipr/botball.h>
-
-void drive_forward(int distance); // distance in cm 
-void turn_right(int degrees);   
+void drive_forward(int distance);
+void turn_right(int degrees);// distance in cm
 void turn_left(int degrees);
-void drive_back(int distance);
-void open_and_close_claw(int position);
 void lift_and_lower_claw(int position);
+void open_and_close_claw (int position);
+void drive_back(int distance);
 void rotate_claw(int position);
 void curve_drive(int distance);
+void slow_rotate_left(int position);
+void slow_rotate_right(int position);
 void slow_servo_lift(int position);
+void slow_servo_lower(int position);
+void slow_servo_open(int position);
+void slow_servo_close(int position);
+void back_bump();
     
 int main()
 {
 
 //0-15 sec Pick up Gas Valve
-lift_and_lower_claw(1604);
+lift_and_lower_claw(1674);
 open_and_close_claw(1024);
-rotate_claw(1501);
-drive_forward(22); //Walk forward 9IN
+rotate_claw(180);
+drive_forward(20); //Walk forward 9IN
 msleep(500);
 turn_right(90); //Turn left 90
 msleep(500);
-lift_and_lower_claw(0);//Lower claw 
-rotate_claw(1865);
-drive_forward(57); //parallel to pipe
+rotate_claw(1434);
+drive_forward(58); //parallel to pipe
 open_and_close_claw (83);//Open claw
-//walks to pvc pipe 
+      //walks to pvc pipe 
 msleep(500);
 turn_left(90); 
 msleep(500);
-drive_forward(38);//17in UP TO PVC PIPE
+back_bump();//17in UP TO PVC PIPE
+drive_back(20);
+lift_and_lower_claw(550);//Lower claw 
+drive_forward(6);
 open_and_close_claw (1350);//Close claw
 drive_forward(1);
-slow_servo_lift(1200);//Raise claw
+slow_servo_lift(1600);//Raise claw
 drive_forward(3);
-lift_and_lower_claw(1600);
-
-
+back_bump();
+  
 //15-30 sec  Drop valve and RU off at UZ
    	drive_back(20);//Walk backward 6 cm
      msleep(250);
