@@ -1,4 +1,5 @@
 #include <kipr/botball.h>
+
 void drive_forward(int distance);
 void turn_right(int degrees);// distance in cm
 void turn_left(int degrees);
@@ -14,138 +15,92 @@ void slow_servo_lower(int position);
 void slow_servo_open(int position);
 void slow_servo_close(int position);
 void back_bump();
-    
+void GET_ON_THE_PIPE();
 int main()
-{
+ 
+{  //FIRST THINGS FIRST
 
-//0-15 sec Pick up Gas Valve
-lift_and_lower_claw(1674);
-open_and_close_claw(1024);
-rotate_claw(180);
-drive_forward(20); //Walk forward 9IN
-msleep(500);
-turn_right(90); //Turn left 90
-msleep(500);
-rotate_claw(1434);
-drive_forward(58); //parallel to pipe
-open_and_close_claw (83);//Open claw
-      //walks to pvc pipe 
-msleep(500);
-turn_left(90); 
-msleep(500);
-back_bump();//17in UP TO PVC PIPE
-drive_back(20);
-lift_and_lower_claw(550);//Lower claw 
-drive_forward(6);
-open_and_close_claw (1350);//Close claw
-drive_forward(1);
-slow_servo_lift(1600);//Raise claw
-drive_forward(3);
-back_bump();
-  
-//15-30 sec  Drop valve and RU off at UZ
-   	drive_back(20);//Walk backward 6 cm
-     msleep(250);
+
+    shut_down_in(119);
+    //NOW GO
+ 
+     lift_and_lower_claw(1800);
+    open_and_close_claw(1024);
+    rotate_claw(180);
+    drive_forward(20); //Walk forward 9IN
+    msleep(500);
+	turn_right(95); //Turn left 90
+ 	msleep(700);
+ 	drive_forward(60); //parallel to pipe
+   
+       //walks to pvc pipe 
+    msleep(500);
+	turn_left(90); 
+    msleep(500);
+    open_and_close_claw (90);//Open claw
+    rotate_claw(1227);
+    back_bump();//17in UP TO PVC PIPE
+    drive_back(20);
+    lift_and_lower_claw(665);//Lower claw 
+    drive_forward(6);
+    open_and_close_claw (1350);//Close claw
+ 	slow_servo_lift(1600);//Raise claw
+    drive_forward(3);
+	back_bump();
+    
+    //WALKS TOWARDS OTHER SIDE
+   	drive_back(15);//Walk backward 6 cm
+    rotate_claw(180);
+    msleep(250);
     turn_right(90);
-     msleep(500);
-    drive_forward(12);
-    msleep(600);
+    msleep(500);
+    back_bump();
+    msleep(500);
+    drive_back(6);
+    slow_rotate_left(1500);
+    back_bump();
+    msleep(250);
     turn_left(90);
     msleep(500);
-     drive_back(60);//push water reclamation unit into UZ
-  	drive_forward(25);
-    lift_and_lower_claw(1700);
-      msleep(700);
+    drive_back(52);//push water reclamation unit into UZ
+    drive_forward(10);//drive away
+    msleep(250);
     turn_right(90);
-      msleep(500);
-    drive_back(27);
-      msleep(700);
-    turn_right(90);
-      msleep(700);
-	drive_forward(34);//drive towards PVC handle
-    msleep(1500);
-    lift_and_lower_claw(1400);
-   cmpc(0);
-    cmpc(3);
-
-//30-45 sec //Connect Power lines
-open_and_close_claw(1050);//set position (level)
-    msleep(500);
-drive_back(33);//Back up 1.5 ft
-    msleep(500);
-turn_left(90);//Turn left 
-    msleep(500);
-drive_forward(30); //Walk forward 
-    msleep(500);
-slow_servo_lift(1024);//Claw up(servos)
-    msleep(500);
-lift_and_lower_claw(400)
-    msleep(500);
-drive_back(30);//Back up
-    msleep(500);
-turn_right(180); //Turn 180
-    msleep(500);
-
-//45-60 sec //Push Supplies to DRZ
-drive_forward(15); //Walk forward .5ft/15 cm
-turn_left(90);//Turn left collecting food and medical supplies
-drive_forward(int distance); //Walk forward pushing supplies in
-turn_right (180); //Turn 180 
-
-//60-75 sec //Collect more supplies
-drive_forward(46); //Walk forward 
-turn_left(90);//Turn 90 left
-drive_forward(30); //walk forward 
-turn_left(90);//Turn 90 left collecting more supplies 
-drive_forward(30); //walk forward
-
-//75-90 sec Continue to push supplies to DRZ
-turn_right (180); //Turn 180 
-drive_forward(int distance); //Walk forward
-turn_left(90);//Turn 90 left
-drive_forward(int distance); //walk forward 
-turn_left(90);//Turn 90 left
-drive_forward(int distance); //walk forward pushing last of citizens into DRZ
-
-//90-105 sec Rescue people from skybridge
-turn_right (180); //turn 180
-lift_and_lower_claw(int position);//lift claw
-open_and_close_claw (1024);//open claw
-	while(digital(8)==0) //while bump sensor is not pushed; 
-	{
-		drive_forward(1); //walk forward to skybridge (bump sensor)
-		msleep(500)
-	}
-ao();
-open_and_close_claw (int);//close claw 
-turn_right (180); //turn 180 
-drive_forward(int distance); //walk to DRZ
-open_and_close_claw (1024);//open claw
-
-//105-120 sec Repeat
-	while(digital(8)==0) //while bump sensor is not pushed; 
-	{
-		drive_forward(1); //walk forward to skybridge (bump sensor)
-		msleep(500)
-	}
-ao();
-open_and_close_claw (int);//close claw
-turn_right (180); //turn 180
-drive_forward(int distance); //walk to DRZ
-open_and_close_claw (1024);//open claw
-
-
+    msleep(250);
+    back_bump();
+    drive_back(2);
+    msleep(250);
+    turn_right(100);
+    msleep(250);
+    rotate_claw(1434);
+    lift_and_lower_claw(0);
+    open_and_close_claw(83);
+    lift_and_lower_claw(1554);
+    open_and_close_claw(1024);
+    rotate_claw(180);
+    turn_left(90);
     
-  return 0;  
+//insert power lines 
+    back_bump();
+    drive_back(6);
+    turn_left(90);
+    drive_forward(20);
+    turn_right(90);
+    drive_back(100);
+    turn_left(22);
+    drive_back(3);
+    turn_left(45);
+    drive_back(30);
+    return 0;
 }
-	    
+
 void drive_forward(int distance)
 {
     cmpc(0);
     while (gmpc(0)<((distance*1400)/17)) //distance times ticks per cm
     {
-         mav(0,900);
-         mav(3,800);       
+         mav(0,800);
+         mav(3,737);       
     }
     ao();
     cmpc(0);
@@ -154,27 +109,30 @@ void drive_forward(int distance)
 void turn_right(int degrees)
 { 
     cmpc(3);
-	while (abs(gmpc(3)<(abs(degrees*10))))
+    cmpc(0);
+	while (abs(gmpc(3)<(abs(degrees*10.5))))
     {
-        mav(0,-300);
+        mav(0,-200);
         mav(3,300);
         msleep(10);
     }
     cmpc(3);
+    cmpc(0);
     ao();
 }
-
 void turn_left(int degrees)
-{
+{ 
     cmpc(0);
-    cmpc(3);
 	while (abs(gmpc(0)<(abs(degrees*10))))
     {
         mav(0,300);
         mav(3,-200);
         msleep(10);
     }
+    cmpc(0);
+    ao();
 }
+
 
 void lift_and_lower_claw(int position)//1730 HIGH 450 low
 {
@@ -314,11 +272,32 @@ void back_bump()
     
         else
         {
-              mav(0,900);
-              mav(3,900);
+              mav(0,800);
+              mav(3,760);
         }
     }
     ao();  
 }
+
+void GET_ON_THE_PIPE()
+{
+            
+    int x=0;
+    int y=2;
+    int counter=0;
+    while (counter<6)
+
+    {
+        slow_servo_lift(x);
+        msleep(50);
+        x+=25;
+        drive_back(3);
+        slow_servo_open(y);
+        y+=3;
+        counter+=1;
+    }
+ao();
+}
+
 
 
