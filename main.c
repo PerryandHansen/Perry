@@ -24,9 +24,9 @@ int main()
     shut_down_in(119);
     //NOW GO
  
-     lift_and_lower_claw(1800);
+     lift_and_lower_claw(1600);
     open_and_close_claw(1024);
-    rotate_claw(180);
+    rotate_claw(1024);
     drive_forward(20); //Walk forward 9IN
     msleep(500);
 	turn_right(95); //Turn left 90
@@ -38,32 +38,29 @@ int main()
 	turn_left(90); 
     msleep(500);
     open_and_close_claw (90);//Open claw
-    rotate_claw(1227);
+    rotate_claw(1272);
     back_bump();//17in UP TO PVC PIPE
     drive_back(20);
-    lift_and_lower_claw(665);//Lower claw 
+    lift_and_lower_claw(50);//Lower claw 
     drive_forward(6);
     open_and_close_claw (1350);//Close claw
  	slow_servo_lift(1600);//Raise claw
     drive_forward(3);
 	back_bump();
     
-    //WALKS TOWARDS OTHER SIDE
-   	drive_back(15);//Walk backward 6 cm
-    rotate_claw(180);
+    //push water reclamation unit into UZ
+    drive_back(20);//Walk backward 6 cm
     msleep(250);
     turn_right(90);
-    msleep(500);
+    msleep(250);
     back_bump();
-    msleep(500);
     drive_back(6);
-    slow_rotate_left(1500);
-    back_bump();
     msleep(250);
     turn_left(90);
-    msleep(500);
-    drive_back(52);//push water reclamation unit into UZ
-    drive_forward(10);//drive away
+    msleep(350);
+    
+    //drive away
+   drive_forward(10);
     msleep(250);
     turn_right(90);
     msleep(250);
@@ -80,7 +77,7 @@ int main()
     rotate_claw(180);
     turn_left(90);
     
-//insert power lines 
+//get those supplies!
     back_bump();
     drive_back(6);
     turn_left(90);
@@ -90,6 +87,7 @@ int main()
     turn_left(22);
     drive_back(3);
     turn_left(45);
+    turn_left(20);
     drive_back(30);
     return 0;
 }
@@ -123,7 +121,7 @@ void turn_right(int degrees)
 void turn_left(int degrees)
 { 
     cmpc(0);
-	while (abs(gmpc(0)<(abs(degrees*10))))
+	while (abs(gmpc(0)<(abs(degrees*10.5))))
     {
         mav(0,300);
         mav(3,-200);
@@ -202,7 +200,7 @@ void drive_back (int distance)
     cmpc(0);
     while (abs(gmpc(0))<(abs(distance*(1400/17)))) //distance times ticks per cm 
     {
-         mav(0,-500);
+         mav(0,-490);
          mav(3,-500);
     }
     ao();
@@ -277,26 +275,6 @@ void back_bump()
         }
     }
     ao();  
-}
-
-void GET_ON_THE_PIPE()
-{
-            
-    int x=0;
-    int y=2;
-    int counter=0;
-    while (counter<6)
-
-    {
-        slow_servo_lift(x);
-        msleep(50);
-        x+=25;
-        drive_back(3);
-        slow_servo_open(y);
-        y+=3;
-        counter+=1;
-    }
-ao();
 }
 
 
