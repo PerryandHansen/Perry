@@ -15,12 +15,12 @@ void slow_servo_lower(int position);
 void slow_servo_open(int position);
 void slow_servo_close(int position);
 void back_bump();
-void GET_ON_THE_PIPE();
+
 int main()
  
 {  //FIRST THINGS FIRST
 
-
+	wait_for_light(0);
     shut_down_in(119);
     //NOW GO
  
@@ -31,9 +31,10 @@ int main()
     msleep(500);
 	turn_right(95); //Turn left 90
  	msleep(700);
- 	drive_forward(60); //parallel to pipe
-   
-       //walks to pvc pipe 
+ 	back_bump(); //parallel to pipe
+   drive_back(25);
+      
+    //walks to pvc pipe 
     msleep(500);
 	turn_left(90); 
     msleep(500);
@@ -58,6 +59,7 @@ int main()
     msleep(250);
     turn_left(90);
     msleep(350);
+    drive_back(57);
     
     //drive away
    drive_forward(10);
@@ -83,22 +85,23 @@ int main()
     turn_left(90);
     drive_forward(20);
     turn_right(90);
-    drive_back(100);
+    back_bump();
+    drive_back(90);
     turn_left(22);
-    drive_back(3);
+    drive_back(5);
     turn_left(45);
+    drive_back(5);
     turn_left(20);
     drive_back(30);
     return 0;
 }
-
 void drive_forward(int distance)
 {
     cmpc(0);
     while (gmpc(0)<((distance*1400)/17)) //distance times ticks per cm
     {
-         mav(0,800);
-         mav(3,737);       
+   		mav(0,990);
+        mav(3,800);    
     }
     ao();
     cmpc(0);
@@ -108,10 +111,10 @@ void turn_right(int degrees)
 { 
     cmpc(3);
     cmpc(0);
-	while (abs(gmpc(3)<(abs(degrees*10.5))))
+	while (abs(gmpc(3)<(abs(degrees*10))))
     {
-        mav(0,-200);
-        mav(3,300);
+        mav(0,-350);
+        mav(3,420);
         msleep(10);
     }
     cmpc(3);
@@ -123,8 +126,8 @@ void turn_left(int degrees)
     cmpc(0);
 	while (abs(gmpc(0)<(abs(degrees*10.5))))
     {
-        mav(0,300);
-        mav(3,-200);
+        mav(0,420);
+        mav(3,-350);
         msleep(10);
     }
     cmpc(0);
@@ -200,8 +203,8 @@ void drive_back (int distance)
     cmpc(0);
     while (abs(gmpc(0))<(abs(distance*(1400/17)))) //distance times ticks per cm 
     {
-         mav(0,-490);
-         mav(3,-500);
+        mav(0,-990);
+        mav(3,-800);
     }
     ao();
     cmpc(0);
@@ -238,19 +241,6 @@ void slow_rotate_right(int position)
         x-=25;
     }
 }
-
-
-void curve_drive(int distance)
-{
-    cmpc(0);
-    while(gmpc(0)<(distance*(-1400/17)))
-    {
-		mav(0,750);
-		mav(3,500);
-    }
-    ao();
-}
-
 void back_bump()
 { 
     while (digital(0)==0 || digital(8)==0)
@@ -270,12 +260,28 @@ void back_bump()
     
         else
         {
-              mav(0,800);
-              mav(3,760);
+              mav(0,990);
+              mav(3,800);
         }
     }
     ao();  
 }
 
-
+void reset_megatron()
+{
+    lift_and_lower_claw(1600);
+    open_and_close_claw(1024);
+    rotate_claw(1024);
+    ao();
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
