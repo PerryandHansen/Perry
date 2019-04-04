@@ -18,7 +18,7 @@ void back_bump();
 void reset_megatron();
 void negback_bump();
 void follow_the_line(int distance);
-int b=3100;
+int b=3950;
 
 int main()
  
@@ -52,6 +52,9 @@ int main()
     
     while (analog(2)<b)
     { mav(0,500);
+      mav(3,500);
+     msleep(10);
+      mav(0,500);
       msleep(10);
      ao();
     }
@@ -60,7 +63,7 @@ int main()
   
 	
     
-    //push gas valve into UZ
+    //GAS VALVE INTO UV
     negback_bump();//Walk backward UNTIL BLACK LINE
     msleep(250);
     turn_right(90);
@@ -75,18 +78,20 @@ int main()
     open_and_close_claw(83);
     lift_and_lower_claw(1554);
     open_and_close_claw(1024);
-    reset_megatron();
-    drive_back(30);
+    drive_back(10);
+    turn_left(10);
+    drive_back(20);
    
     
     
 //get those supplies!    
  negback_bump();
+ msleep(1000);
  drive_forward(7);
  msleep(250);
 turn_left(90);
-msleep(250);
-drive_back(87);
+msleep(500);
+drive_back(80);
 turn_left(22);
 drive_back(5);
 turn_left(45);
@@ -94,38 +99,50 @@ drive_back(5);
 turn_left(20);
 drive_back(15);
 negback_bump();
-    
+
     
 //FIREPOLE
-      drive_back(5);
+      drive_back(3);
     turn_left(90);
-    drive_forward(25);           
-    back_bump();
+    drive_forward(24);           
+        back_bump();
+    drive_back(20);
     msleep(100);
     turn_right(185);
     msleep(100);
     negback_bump();
-    drive_back(47);//57cm from inside black box to outside black tape of other box
+    msleep(1000);
+    drive_back(35);//57cm from inside black box to outside black tape of other box
     msleep(250);
-    turn_right(90);
+    turn_right(60);//long boi into thing
     msleep(250);
-    drive_back(20);
-    drive_forward(15);
+    drive_back(30);
+    drive_forward(25);
     msleep(250);
+    turn_left(45);
+    msleep(250);
+    //fireman #1
+     drive_back(18);
+    turn_left(45);
+    drive_forward(7);
+    turn_right(50);
+    //#2
+    drive_back(7);
     turn_left(90);
-    msleep(250);
-    drive_back(12);
-    turn_left(90);
-    drive_forward(10);
+    drive_forward(7);
     turn_right(45);
-    drive_back(10);
+    //#3
+    drive_back(7);
     turn_left(90);
-    drive_forward(10);
+    drive_forward(7);
     turn_right(45);
-    drive_back(10);
-    turn_left(90);   
-    
-    
+    //#4
+    drive_back(7);
+    turn_left(90);
+    drive_forward(7);
+    turn_right(45);
+   
+
     
     
   
@@ -239,7 +256,7 @@ void drive_back (int distance)
     cmpc(0);
     while (abs(gmpc(0))<(abs(distance*(1400/17)))) //distance times ticks per cm 
     {
-        mav(0,-920);
+        mav(0,-911);
         mav(3,-955);
     }
     ao();
@@ -344,32 +361,6 @@ void negback_bump()
 }
 
 
-void follow_the_line(int distance) 
-{ 
-    cmpc(0);
-    int b=3100;
-    while (gmpc(0)<((distance*1400)/17)) //distance times ticks per cm
-    {
-    cmpc(0);
-    if (analog(1)<b)//sees less than black aka white or gray
-    {
-        motor(0,-70);
-        motor(3,-55);
-        msleep(10);
-    }
-    
-   else 
-   { 
-       motor(0,-55);
-       motor(3,-70);
-       msleep(10);
-       
-   }
-    }
-    ao();
-}
-    
-    
     
     
     
